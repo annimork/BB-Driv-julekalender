@@ -34,19 +34,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="robots" content="noindex, nofollow" />
   <link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@400;700&display=swap" rel="stylesheet" />
-  <title>...navn... sin Julekalender</title>
+  <title>BB Driv Julekalender</title>
   <style>
     :root{
       /* Farger & fonter */
       --bg:#0c111b; --card:#101827; --text:#eef2f7; --muted:#94a3b8;
       --title-font:'Mountains of Christmas', cursive;
       /* Julerøde fliser */
-      --tile-red-1:#b91c1b;        /* base */
-      --tile-red-2:#b91c1b;        /* base (jevnt) */
+      --tile-red-1:#de2726;        /* base */
+      --tile-red-2:#de2726;        /* base (jevnt) */
       --tile-red-1-hover:#da1717;  /* hover lysere */
       --tile-red-2-hover:#da1717;  /* hover lysere */
-      --tile-red-dim-1:#4f1c1b;    /* låst lysere */
-      --tile-red-dim-2:#34100f;    /* låst mørkere */
+      --tile-red-dim-1:#de262679;    /* låst lysere */
+      --tile-red-dim-2:#491815;    /* låst mørkere */
       --tile-border:#6b1f1c;
     }
 
@@ -92,7 +92,7 @@
 
         .info-wrap{display:flex;justify-content:center;margin-top:10px;}
     .info-btn{width:40px;height:40px;border-radius:999px;border:1.5px solid var(--muted);background:rgba(12,17,27,.55);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:transform .15s ease, box-shadow .15s ease, background .15s ease;}
-    .info-btn-inner{width:22px;height:22px;border-radius:999px;border:1.5px solid rgba(255,255,255,.85);display:flex;align-items:center;justify-content:center;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;font-size:13px;font-weight:600;color:rgba(226,232,240,.9);} 
+    .info-btn-inner{width:22px;height:22px;border-radius:999px;border:1.5px none rgba(255,255,255,.85);display:flex;align-items:center;justify-content:center;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;font-size:13px;font-weight:600;color:rgba(226,232,240,.9);} 
     @media (hover:hover){.info-btn:hover{transform:translateY(-1px);background:rgba(15,23,42,.8);box-shadow:0 6px 14px rgba(0,0,0,.6);}}
     .info-btn:focus-visible{outline:3px solid #22c55e;outline-offset:2px;}
 
@@ -113,7 +113,7 @@
     .btns{display:flex;gap:10px;margin-top:6px;flex-wrap:wrap;justify-content:flex-start}
     .btn{display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:12px;color:#fff;text-decoration:none;font-weight:700;border:none;cursor:pointer}
     .btn svg{width:18px;height:18px;fill:currentColor}
-    .btn-apple{background:#fa233b}
+    .btn-apple{background:#de2726}
     .btn-spotify{background:#1db954}
     .btn-secondary{background:#374151}
     .btn:focus-visible{outline:3px solid #22c55e;outline-offset:2px}
@@ -122,13 +122,13 @@
 <body>
   <div class="snow"></div>
   <header class="container">
-    <h1>🎄 ...navn... sin Julekalender</h1>
-    <p>Et lite stykke musikk hver dag fram til jul. En del gleder og kanskje noen utfordringer?</p>
+    <h1>🎄 BB Driv Julekalender 🎄</h1>
+    <p>En ny utfordring hver dag! Jo flere luker du fullfører, jo større vinnersjanse har du. Lykke til!</p>
   </header>
 
   <div class="info-wrap">
     <button id="info-btn" class="info-btn" type="button" aria-label="Informasjon om julekalenderen">
-      <span class="info-btn-inner">i</span>
+      <span class="info-btn-inner">Info</span>
     </button>
   </div>
 
@@ -149,12 +149,12 @@
       <div class="modal-header">
         <div class="modal-banner">
           <h2 id="modal-title" class="modal-title"></h2>
-        </div>
+        </div>  
       </div>
       <p id="modal-text" class="modal-text"></p>
       <div class="btns">
-        <a id="btn-apple" class="btn btn-apple" target="_blank" rel="noopener" aria-label="Åpne i Apple Music">
-  Apple Music
+        <a id="btn-apple" class="btn btn-apple" target="_blank" rel="noopener" aria-label="Trykk her for å levere dagens oppgave">
+  Send inn
 </a>
 <a id="btn-spotify" class="btn btn-spotify" target="_blank" rel="noopener" aria-label="Åpne i Spotify">
   Spotify
@@ -178,7 +178,7 @@
 
   <script>
 // Overstyr for testing: sett til true for å åpne ALLE luker
-const DEBUG_ALWAYS_OPEN = true;  // endre til false når du går "live"
+const DEBUG_ALWAYS_OPEN = false;  // endre til false når du går "live"
 
 // Dato-styrt åpning av luker
 function isDoorOpen(day){
@@ -210,18 +210,16 @@ const DATA_URLS = ['data/days.json','./data/days.json'];
       debugIndicator.style.display = 'block';
     }
 
-    const INFO_TEXT = `Så gøy at du er inne i julekalenderen!
-
-Her får du et musikkstykke, eller en låt, hver dag fram til jul. Bruk gjerne mobil, så åpner lenkene seg rett i Spotify-/Apple Music-appen.
-
-Dette har vært et gøy prosjekt for meg. Jeg fikk lyst til å prøve vibe coding for første gang. Selve programmeringen har ChatGPT stått for, og så har vi testet masse fram og tilbake - til det du ser her. Musikken og teksten er det så klart jeg som har funnet fram.
-
-LITT OM MUSIKKEN:
-Jeg klarer sjelden å svare når noen spør hva slags musikk jeg liker. Kanskje fordi jeg ikke er så opptatt av hva "slags" musikk jeg hører? For meg er det mer opp til det enkelte stykket enn musikktypen.
-
-Her får du en salig blanding, og jeg fikk lyst til å legge inn noen ting som jeg tenker du kanskje (?) ikke har ført før. Det er alltid gøy, og noen ganger utfordrende, å bli kjent med noe nytt! Siden det snart er jul blir det mest av det snille og vakre.
-
-GOD JUL!`;
+    const INFO_TEXT = `Velkommen til BB Drivs julekalender! Hver dag i desember kommer en ny utfordring. 
+    
+    
+    Gjør utfordringen etter beste evne for å sikre deg flest mulig lodd i julekonkurransen. 
+    
+    
+    På julaften trekker vi en heldig vinner som kan velge mellom en Garmin pulsklokke eller et par Hoka løpesko.
+    
+    
+    Du må kunne dokumentere at du har gjort dagens utfordring - f.eks ved å ha et øyenvitne, loggføre i Frami eller ved å videodokumentere at du har gjort det.`;
 
     // Formatterer tekst til avsnitt (alternativ 3)
     function formatModalText(raw){
@@ -247,7 +245,7 @@ GOD JUL!`;
 
     function showFriendlyError(){
       const el = document.getElementById('err');
-      el.textContent = 'Oisann, det er noe feil her. Send meg en melding, så jeg kan se på det! I mellomtiden kan du synge en sang selv... 🎅🏼';
+      el.textContent = 'Oisann, det er noe feil her. Send meg en melding på tlf: 95871663, så jeg kan se på det! I mellomtiden kan du synge en julesang... 🎅🏼';
       el.style.display = 'block';
     }
 
